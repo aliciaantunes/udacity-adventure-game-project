@@ -54,10 +54,15 @@ def play_game():
         else:
             war_battle()
 
-        play_again = input("Do you want to play again? (yes/no) ").lower()
-        if play_again != "yes":
-            print_pause("Thank you for playing!")
-            break
+        while True:
+            play_again = input("Do you want to play again? (yes/no) ").lower()
+            if play_again == "yes":
+                break
+            elif play_again == "no":
+                print_pause("Thank you for playing!")
+                return
+            else:
+                print_pause("Invalid input. Enter 'yes' or 'no'.")
 
 
 def war_battle():
@@ -81,8 +86,8 @@ def war_battle():
             print_pause("Invalid choice. Choose between 1 and 3.")
             continue
         player_damage = random.randint(1, 6)
-        print_pause(f"You attacked the enemy's {target}"
-                    "and dealt {player_damage} damage.")
+        print_pause(f"You attacked the enemy's {target} "
+                    f"and dealt {player_damage} damage.")
         enemy_health -= player_damage
         if enemy_health <= 0:
             print_pause("You defeated the enemy!")
